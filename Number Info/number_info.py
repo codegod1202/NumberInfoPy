@@ -9,14 +9,14 @@ def prime():
          for i in range(2,n):
             if n%i == 0:
                t1.delete('1.0',END)
-               t1.insert(END,"COMOSITE NUMBER")
+               t1.insert(END,"COMPOSITE NUMBER")
                break
          else:
             t1.delete('1.0',END)
             t1.insert(END,"PRIME NUMBER")
       else:
          t1.delete('1.0',END)
-         t1.insert(END,"COMOSITE NUMBER")
+         t1.insert(END,"ERROR")
    except :
       t1.delete('1.0',END)
       t1.insert(END,"ERROR")            
@@ -90,33 +90,36 @@ def square_root():
    except :
       t7.delete('1.0',END)
       t7.insert(END,"ERROR")
+
+b1 = Button(window,text="EXECUTE",command=lambda:[prime(),reverse(),palindrome(),cube(),cube_root(),square(),square_root()])      
+b1.grid(row=0,column=2,rowspan=8)
  
 l1 = Label(window,height = 1,width = 17,text="Enter the number")
 l1.grid(row=0,column=0)
 
-b1 = Button(window,height = 1,width = 17,text="PRIME or COMPOSITE",command=prime)
-b1.grid(row=1,column=0)
+l2 = Label(window,height = 1,width = 17,text="PRIME or COMPOSITE")
+l2.grid(row=1,column=0)
 
-b2 = Button(window,height = 1,width = 17,text="REVERSE",command=reverse)
-b2.grid(row=2,column=0)
+l3 = Label(window,height = 1,width = 17,text="REVERSE")
+l3.grid(row=2,column=0)
 
-b3 = Button(window,height = 1,width = 17,text="PALINDROME",command=palindrome)
-b3.grid(row=3,column=0)
+l3 = Label(window,height = 1,width = 17,text="PALINDROME")
+l3.grid(row=3,column=0)
 
-b4 = Button(window,height = 1,width = 17,text="CUBE",command=cube)
-b4.grid(row=4,column=0)
+l4 = Label(window,height = 1,width = 17,text="CUBE")
+l4.grid(row=4,column=0)
 
-b5 = Button(window,height = 1,width = 17,text="CUBE ROOT",command=cube_root)
-b5.grid(row=5,column=0)
+l5 = Label(window,height = 1,width = 17,text="CUBE ROOT")
+l5.grid(row=5,column=0)
 
-b6 = Button(window,height = 1,width = 17,text="SQUARE",command=square)
-b6.grid(row=6,column=0)
+l6 = Label(window,height = 1,width = 17,text="SQUARE")
+l6.grid(row=6,column=0)
 
-b7 = Button(window,height = 1,width = 17,text="SQUARE ROOT",command=square_root)
-b7.grid(row=7,column=0)
+l7 = Label(window,height = 1,width = 17,text="SQUARE ROOT")
+l7.grid(row=7,column=0)
 
 e1_value = StringVar()
-e1 = Entry(window,textvariable=e1_value)
+e1 = Entry(window,textvariable=e1_value,width=33)
 e1.grid(row=0,column=1)
 
 t1 = Text(window,height = 1,width = 25)
