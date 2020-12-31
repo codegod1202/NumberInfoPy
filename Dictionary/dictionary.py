@@ -1,7 +1,6 @@
 import json
 from difflib import get_close_matches
 from tkinter import *
-from datetime import datetime
 
 data = json.load(open("meanings.json","r"))
 
@@ -16,6 +15,7 @@ class dict :
 			file.seek(0)
 			file.write(e1.get()+'\n')
 			file.close()
+			
 			if e1.get().lower() in data :
 				t1.delete(0,END)
 				output = data[e1.get().lower()]
