@@ -10,45 +10,98 @@ window.title("DICTIONARY")
 
 class dict :
 	def translate(self) :
+		try:
+			self.b10.grid_remove()
+		except:
+			pass	
 		if e1.get() != "" :
 			file = open("history.txt",'a+')
 			file.seek(0)
-			file.write(e1.get()+'\n')
+			if e1.get() not in file :
+				file.write(e1.get()+'\n')
+			else:
+				pass	
 			file.close()
-			
 			if e1.get().lower() in data :
-				t1.delete(0,END)
-				output = data[e1.get().lower()]
-				for item in output:
-					t1.insert(END,item+'\n')
+				try:	
+					self.t2.grid_remove()
+					self.b2.grid_remove()
+					self.b3.grid_remove()
+					t1.delete(0,END)
+					output = data[e1.get().lower()]
+					for item in output:
+						t1.insert(END,item+'\n')
+				except:
+					t1.delete(0,END)
+					output = data[e1.get().lower()]
+					for item in output:
+						t1.insert(END,item+'\n')						
 						
 			elif e1.get().title() in data :
-				t1.delete(0,END)
-				output = data[e1.get().title()]
-				for item in output:
-					t1.insert(END,item+'\n')
-						
+				try:	
+					self.t2.grid_remove()
+					self.b2.grid_remove()
+					self.b3.grid_remove()			
+					t1.delete(0,END)
+					output = data[e1.get().title()]
+					for item in output:
+						t1.insert(END,item+'\n')
+				except:
+					t1.delete(0,END)
+					output = data[e1.get().title()]
+					for item in output:
+						t1.insert(END,item+'\n')				
+
 			elif e1.get().upper() in data :
-				t1.delete(0,END)
-				output = data[e1.get().upper()]
-				for item in output:
-					t1.insert(END,item+'\n')
-				
+				try:	
+					self.t2.grid_remove()
+					self.b2.grid_remove()
+					self.b3.grid_remove()			
+					t1.delete(0,END)
+					output = data[e1.get().upper()]
+					for item in output:
+						t1.insert(END,item+'\n')
+				except:
+					t1.delete(0,END)
+					output = data[e1.get().upper()]
+					for item in output:
+						t1.insert(END,item+'\n')				
+							
 			elif e1.get() not in data:
 				try:
-					t1.delete(0,END)
-					self.matches = get_close_matches(e1.get(),data.keys(),cutoff=0.75)[0]
-					a  = 'Do you mean by'+' '+self.matches+' '+"instead??"
-					self.t2 = Listbox(window,height=1,width=40)
-					self.t2.grid(row=1,column=0,columnspan=2)
-					self.t2.delete(0,END)
-					self.t2.insert(END,a)
-				
-					self.b2 = Button(window,text="YES",command=d.translate2)
-					self.b2.grid(row=2,column=0)
+					try:	
+						self.t2.grid_remove()
+						self.b2.grid_remove()
+						self.b3.grid_remove()
+						t1.delete(0,END)
+						self.matches = get_close_matches(e1.get(),data.keys(),cutoff=0.75)[0]
+						a  = 'Do you mean by'+' '+self.matches+' '+"instead??"
+						self.t2 = Listbox(window,height=1,width=40)
+						self.t2.grid(row=1,column=0,columnspan=2)
+						self.t2.delete(0,END)
+						self.t2.insert(END,a)
 					
-					self.b3 = Button(window,text="NO",command=d.translate3)
-					self.b3.grid(row=2,column=1)
+						self.b2 = Button(window,text="YES",command=d.translate2)
+						self.b2.grid(row=2,column=0)
+						
+						self.b3 = Button(window,text="NO",command=d.translate3)
+						self.b3.grid(row=2,column=1)
+
+					except :
+						t1.delete(0,END)
+						self.matches = get_close_matches(e1.get(),data.keys(),cutoff=0.75)[0]
+						a  = 'Do you mean by'+' '+self.matches+' '+"instead??"
+						self.t2 = Listbox(window,height=1,width=40)
+						self.t2.grid(row=1,column=0,columnspan=2)
+						self.t2.delete(0,END)
+						self.t2.insert(END,a)
+					
+						self.b2 = Button(window,text="YES",command=d.translate2)
+						self.b2.grid(row=2,column=0)
+						
+						self.b3 = Button(window,text="NO",command=d.translate3)
+						self.b3.grid(row=2,column=1)	
+						
 				except :
 					t1.delete(0,END)
 					t1.insert(END,"Can't understand the word you typed")
@@ -63,6 +116,10 @@ class dict :
 			t1.insert(END,"NO WORD TYPED!!!!")				
 	
 	def translate2(self):
+		try:
+			self.b10.grid_remove()
+		except:
+			pass		
 		t1.delete(0,END)
 		output = data[self.matches]
 		for item in output:
@@ -78,6 +135,10 @@ class dict :
 		self.b3.grid_remove()
 
 	def translate3(self):
+		try:
+			self.b10.grid_remove()
+		except:
+			pass		
 		t1.delete(0,END)
 		output = "THANK YOU!!!!!"	
 		t1.insert(END,output)
@@ -86,6 +147,8 @@ class dict :
 		self.b3.grid_remove()
 
 	def history(self):
+		self.b10 = Button(window,text="SEARCH SELECTED",command=lambda:[d.print_me(),d.translate()])
+		self.b10.grid(row=0,column=3)
 		try :
 			e1.delete(0,END)
 			t1.delete(0,END)
@@ -111,6 +174,10 @@ class dict :
 			file.close()
 
 	def clear_history(self):
+		try:
+			self.b10.grid_remove()
+		except:
+			pass		
 		try :
 			e1.delete(0,END)
 			t1.delete(0,END)
@@ -218,8 +285,5 @@ b6.grid(row=4,column=6)
 window.bind('<Return>', lambda event=None: b1.invoke())
 window.bind('<Control-h>', lambda event=None: b4.invoke())
 window.bind('<Control-q>', lambda event=None: b5.invoke())
-
-b10 = Button(window,text="SEARCH SELECTED",command=lambda:[d.print_me(),d.translate()])
-b10.grid(row=0,column=3)
 
 window.mainloop()
